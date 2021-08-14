@@ -1,0 +1,28 @@
+<div class="container float-right">
+  <div class="row">
+    <div class="col-12 mt-2">
+      <a routerLink="/Home"><button mat-raised-button>Show all</button></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="display-flex">
+        <h1>first name:</h1>
+        <h2>{{ details.first_name }}</h2>
+      </div>
+      <div class="display-flex">
+        <h1>last name:</h1>
+        <h2>{{ details.last_name }}</h2>
+      </div>
+      <div class="display-flex">
+        <h1>email:</h1>
+        <h2>{{ details.email }}</h2>
+      </div>
+      <div class="display-flex">
+        <h1>avatar:</h1>
+        <img [src]="details.avatar" />
+      </div>
+    </div>
+  </div>
+</div>

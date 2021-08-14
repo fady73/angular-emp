@@ -1,0 +1,62 @@
+<div class="container float-right">
+  <div class="row">
+    <div class="col-12 mt-2">
+      <a routerLink="/Home"><button mat-raised-button>Show all</button></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form
+        [formGroup]="ngForm"
+        *ngIf="this.ngForm"
+        (ngSubmit)="onSubmit()"
+        class="example-form"
+      >
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>first name</mat-label>
+          <input
+            matInput
+            placeholder="employee name"
+            formControlName="first_name"
+          />
+          <mat-error *ngIf="errorHandling('first_name', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>last name</mat-label>
+          <input
+            matInput
+            placeholder="employee name"
+            formControlName="last_name"
+          />
+          <mat-error *ngIf="errorHandling('last_name', 'required')">
+            this field is required
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>email</mat-label>
+          <input matInput placeholder="email" formControlName="email" />
+          <mat-error *ngIf="errorHandling('email', 'required')">
+            this field is required
+          </mat-error>
+          <mat-error *ngIf="errorHandling('email', 'email')">
+            this email is invalid
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>avatar</mat-label>
+          <input matInput placeholder="avatar" formControlName="avatar" />
+        </mat-form-field>
+
+        <div class="col-12 text-right">
+          <button mat-raised-button color="primary" type="submit">save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="container">
+  <div *ngIf="loading" class="lds-css ng-scope d-flex justify-content-center">
+    <div class="lds-blocks" style="width: 100%; height: 100%">
+      <div style="left: 38px; top: 38px; animation-delay: 0s"></div>
+      <div style="left: 80px; top: 38px; animation-delay: 0.125s"></div>
+      <div style="left: 122px; top: 38px; animation-delay: 0.25s"></div>
+      <div style="left: 38px; top: 80px; animation-delay: 0.875s"></div>
+      <div style="left: 122px; top: 80px; animation-delay: 0.375s"></div>
+      <div style="left: 38px; top: 122px; animation-delay: 0.75s"></div>
+      <div style="left: 80px; top: 122px; animation-delay: 0.625s"></div>
+      <div style="left: 122px; top: 122px; animation-delay: 0.5s"></div>
+    </div>
+  </div>
+
+  <div class="row mt-2" *ngIf="!loading">
+    <div class="col-10">
+      <button mat-raised-button color="primary">
+        <a routerLink="/add" style="color: white">Add new employee</a>
+      </button>
+    </div>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef>email</th>
+      <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="first_name">
+      <th mat-header-cell *matHeaderCellDef>first_name</th>
+      <td mat-cell *matCellDef="let element">{{ element.first_name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="last_name">
+      <th mat-header-cell *matHeaderCellDef>last_name</th>
+      <td mat-cell *matCellDef="let element">{{ element.last_name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="avatar">
+      <th mat-header-cell *matHeaderCellDef>avatar</th>
+      <td mat-cell *matCellDef="let element">
+        <img [src]="element.avatar" />
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>action</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/details', element.id]">
+          <button mat-raised-button>view</button></a
+        >
+        <a [routerLink]="['/Edit', element.id]">
+          <button mat-raised-button>edit</button></a
+        >
+
+        <button (click)="delete(element.id)" mat-raised-button color="primary">
+          delete
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    (page)="loadMore($event)"
+    [length]="total"
+    [pageSize]="6"
+  ></mat-paginator>
+</div>
